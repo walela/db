@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${API}/users/aholachek`)
+      .get(`${API}/users/walela`)
       .then(res => {
         console.log(res.data)
         setUserData(res.data)
@@ -22,14 +22,26 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className='App'>
       <header>
         <h1>nectar</h1>
       </header>
       {!loading && userData.length !== 0 ? (
         <div className='dashboard'>
-          <div className='prof-pic'>
+          <div className='profile'>
             <img src={userData.avatar_url} alt='github avatar' />
+            <div className='following'>
+              <div className='follower-titles'>
+                <span>FOLLOWING</span>
+                {'  '}
+                <span>FOLLOWERS</span>
+              </div>
+              <div className='follower-data'>
+                <span>{userData.following}</span>
+                {'  '}
+                <span>{userData.followers}</span>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

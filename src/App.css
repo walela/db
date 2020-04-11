@@ -9,11 +9,8 @@
 }
 
 .App {
-  width: 100vw;
-  background-color: rgb(250, 184, 104);
-  padding: 24px;
+  width: 80vw;
   margin: 0 auto;
-  display: flex;
 }
 .App h1 {
   font-family: 'Stardos Stencil';
@@ -21,10 +18,43 @@
   font-size: 48px;
   text-decoration: underline;
 }
-.prof-pic img {
-  width: 130px;
-  height: 130px;
+.profile {
+  width: 192px;
+  height: 256px;
+  margin: 12px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  background-color: rgb(252, 245, 245);
+}
+.profile img {
+  width: 192px;
+  height: 192px;
   border-radius: 3px;
-  border: 2px solid rgb(94, 91, 91);
   box-shadow: 2px 2px 12px rgb(14, 26, 26);
+  margin-bottom: 6px;
+
+}
+.follower-titles {
+  display: flex;
+  justify-content: space-around;
+}
+.follower-titles span {
+  font-family: sans-serif;
+  color: gray;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.follower-data {
+  display: flex;
+  justify-content: space-around;
+}
+.follower-data span {
+  font-family: monospace;
+  color: blueviolet;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.following {
+
 }
