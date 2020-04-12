@@ -17,7 +17,8 @@ import styled from '@emotion/styled'
 import axios from 'axios'
 
 const TOKEN = '766844db91680d70deea5f02d843c475ce48adeb'
-axios.defaults.baseURL = 'https://api.github.com'
+axios.defaults.baseURL =
+  'https://cors-anywhere.herokuapp.com/https://api.github.com'
 // axios.defaults.headers.common = {
 //   Authorization: `Bearer ${TOKEN}`,
 // }
