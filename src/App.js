@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Stack, Box, Heading, Image, Link } from '@chakra-ui/core'
+import { Stack, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
 import { MdPeople, MdAccountCircle, MdLocationOn } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
 import styled from '@emotion/styled'
@@ -31,19 +31,33 @@ const DashBoard = styled.div`
   margin-top: 12px;
   margin-right: 12px;
   border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `
 
 function App() {
-  const API = 'https://api.github.com'
+  const API = 'https://cors-anywhere.herokuapp.com/https://api.github.com'
   const [userData, setUserData] = useState([])
+  const [repoData, setRepoData] = useState([])
+
+  const getUserData = () => {
+    return axios.get(`${API}/users/aholachek`)
+  }
+
+  const getRepoData = () => {
+    return axios.get(`${API}/users/aholachek/repos?per_page=12&sort=created`)
+  }
 
   useEffect(() => {
     axios
-      .get(`${API}/users/walela`)
-      .then(res => {
-        console.log(res.data)
-        setUserData(res.data)
-      })
+      .all([getUserData(), getRepoData()])
+      .then(
+        axios.spread((user, repos) => {
+          setUserData(user.data)
+          setRepoData(repos.data)
+        })
+      )
       .catch(err => console.error(err))
   }, [])
 
@@ -145,7 +159,41 @@ function App() {
           </Stack>
         </Stack>
       </SideBar>
-      <DashBoard />
+      <DashBoard>
+        {repoData.map(repo => (
+          <Box
+            key={repo.id}
+            borderRadius='3px'
+            border='2px solid grey'
+            w={64}
+            h={120}
+            mt='12px'
+            ml='9px'
+            p={2}
+            mr='6px'
+          >
+            <Stack isInline justify='space-between'>
+              <Heading
+                size='sm'
+                fontStyle='italic'
+                color='linkedin'
+                fontFamily='Stardos Stencil'
+              >
+                <Link href={`https://github.com/${repo.full_name}`}>
+                  {' '}
+                  {repo.name}
+                </Link>
+              </Heading>
+              <Stack isInline>
+                <Icon name='star' />
+                <Heading size='md' ml='-6px' mt='-3px'>
+                  {repo.stargazers_count}
+                </Heading>
+              </Stack>
+            </Stack>
+          </Box>
+        ))}
+      </DashBoard>
     </AppContainer>
   )
 }
