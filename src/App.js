@@ -5,6 +5,12 @@ import { FaUserEdit } from 'react-icons/fa'
 import styled from '@emotion/styled'
 import axios from 'axios'
 
+const TOKEN = '766844db91680d70deea5f02d843c475ce48adeb'
+axios.defaults.baseURL = 'https://api.github.com'
+axios.defaults.headers.common = {
+  Authorization: `Bearer ${TOKEN}`,
+}
+
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -34,21 +40,21 @@ const DashBoard = styled.div`
 `
 
 function App() {
-  const API = 'https://cors-anywhere.herokuapp.com/https://api.github.com'
   const [userData, setUserData] = useState([])
   const [repoData, setRepoData] = useState([])
 
   const getUserData = () => {
-    return axios.get(`${API}/users/walela`)
+    return axios.get(`/users/walela`)
   }
 
   const getRepoData = () => {
     return axios.get(
-      `${API}/users/walela/repos?per_page=8&sort=created&direction=asc`
+      `/users/walela/repos?per_page=8&sort=created&direction=asc`
     )
   }
 
   useEffect(() => {
+    console.log(axios.baseURL)
     axios
       .all([getUserData(), getRepoData()])
       .then(
