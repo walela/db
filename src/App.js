@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Stack, PseudoBox, Badge, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
+import {
+  Stack,
+  PseudoBox,
+  Badge,
+  Box,
+  Flex,
+  Icon,
+  Heading,
+  Image,
+  Link,
+} from '@chakra-ui/core'
 import { MdPeople, MdAccountCircle, MdLocationOn } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
+import { GoRepoForked } from 'react-icons/go'
 import styled from '@emotion/styled'
 import axios from 'axios'
 
@@ -25,7 +36,6 @@ const SideBar = styled.div`
   font-family: Libre Baskerville;
   height: 100vh;
   background-color: rgb(143, 33, 247);
-  margin-left: 12px;
   border-radius: 2px;
   color: white;
 `
@@ -42,16 +52,17 @@ const DashBoard = styled.div`
 `
 
 function App() {
+  const user = 'aholachek'
   const [userData, setUserData] = useState([])
   const [repoData, setRepoData] = useState([])
 
   const getUserData = () => {
-    return axios.get(`/users/walela`)
+    return axios.get(`/users/${user}`)
   }
 
   const getRepoData = () => {
     return axios.get(
-      `/users/walela/repos?per_page=8&sort=created&direction=asc`
+      `/users/${user}/repos?per_page=8&sort=created&direction=asc`
     )
   }
 
@@ -170,8 +181,8 @@ function App() {
         {repoData.map(repo => (
           <PseudoBox
             key={repo.id}
-            borderRadius='4px'
-            borderTop='3px solid orange'
+            borderRadius='3px'
+            borderTop='4px solid orange'
             backgroundColor='white'
             w='21vw'
             height='13vw'
@@ -179,7 +190,7 @@ function App() {
             ml='6px'
             p={3}
             mr='6px'
-            transition="all 0.2s ease-in"
+            transition='all 0.4s ease-in'
             _hover={{ transform: 'scale(1.05) translate(2px, -2px)' }}
           >
             <Stack isInline justify='space-between'>
@@ -202,9 +213,23 @@ function App() {
               </Stack>
             </Stack>
             <Box fontFamily='Stardos Stencil'>{repo.description}</Box>
-            <Badge variant='solid' variantColor='whatsapp' mt='12px'>
-              {repo.language}
-            </Badge>
+
+            <Stack isInline mt='12px' justify='space-between'>
+              <Badge variant='solid' variantColor='whatsapp'>
+                {repo.language}
+              </Badge>
+              <Stack isInline>
+                <Box as={GoRepoForked} size='18px'></Box>
+                <Heading
+                  size='md'
+                  ml='-6px'
+                  mt='-3px'
+                  fontFamily='Stardos Stencil'
+                >
+                  {repo.forks_count}
+                </Heading>
+              </Stack>
+            </Stack>
           </PseudoBox>
         ))}
       </DashBoard>
