@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Stack, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
+import { Stack, Badge, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
 import { MdPeople, MdAccountCircle, MdLocationOn } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
 import styled from '@emotion/styled'
@@ -15,7 +15,7 @@ const AppContainer = styled.div`
 const SideBar = styled.div`
   width: 24vw;
   font-family: Libre Baskerville;
-  height: 95vh;
+  height: 100vh;
   background-color: rgb(143, 33, 247);
   margin-top: 12px;
   margin-right: 12px;
@@ -26,13 +26,13 @@ const SideBar = styled.div`
 
 const DashBoard = styled.div`
   width: 76vw;
-  height: 95vh;
+  height: 100vh;
   background-color: rgb(236, 242, 236);
   margin-top: 12px;
   margin-right: 12px;
   border-radius: 2px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 `
 
@@ -42,11 +42,13 @@ function App() {
   const [repoData, setRepoData] = useState([])
 
   const getUserData = () => {
-    return axios.get(`${API}/users/aholachek`)
+    return axios.get(`${API}/users/walela`)
   }
 
   const getRepoData = () => {
-    return axios.get(`${API}/users/aholachek/repos?per_page=12&sort=created`)
+    return axios.get(
+      `${API}/users/walela/repos?per_page=8&sort=created&direction=asc`
+    )
   }
 
   useEffect(() => {
@@ -163,13 +165,14 @@ function App() {
         {repoData.map(repo => (
           <Box
             key={repo.id}
-            borderRadius='3px'
-            border='2px solid grey'
-            w={64}
-            h={120}
+            borderRadius='4px'
+            borderTop='3px solid orange'
+            backgroundColor='white'
+            w='21vw'
+            height='13vw'
             mt='12px'
-            ml='9px'
-            p={2}
+            ml='6px'
+            p={3}
             mr='6px'
           >
             <Stack isInline justify='space-between'>
@@ -191,6 +194,10 @@ function App() {
                 </Heading>
               </Stack>
             </Stack>
+            <Box fontFamily='Stardos Stencil'>{repo.description}</Box>
+            <Badge variant='solid' variantColor='whatsapp' mt='18px'>
+              {repo.language}
+            </Badge>
           </Box>
         ))}
       </DashBoard>
