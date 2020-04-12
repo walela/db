@@ -34,7 +34,7 @@ const SideBar = styled.div`
   width: 24vw;
   font-family: Libre Baskerville;
   height: 100vh;
-  background-color: #184a45;
+  background-color: #026178;
   border-radius: 2px;
   color: white;
 `
