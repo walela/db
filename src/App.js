@@ -194,20 +194,22 @@ function App() {
               </Link>
             </Heading>
           </Stack>
-          <Button
-            variantColor='whatsapp'
-            fontFamily='Stardos Stencil'
-            onClick={loadMore}
-          >
-            Next →
-          </Button>
-          <Button
-            variantColor='whatsapp'
-            fontFamily='Stardos Stencil'
-            onClick={() => setPageCount(pageCount - 1)}
-          >
-            ← Previous
-          </Button>
+          <Stack isInline spacing={6} mt='24px'>
+            <Button
+              variantColor='whatsapp'
+              fontFamily='Stardos Stencil'
+              onClick={() => setPageCount(pageCount - 1)}
+            >
+              ← Previous
+            </Button>
+            <Button
+              variantColor='whatsapp'
+              fontFamily='Stardos Stencil'
+              onClick={loadMore}
+            >
+              Next →
+            </Button>
+          </Stack>
         </Stack>
       </SideBar>
       <DashBoard>
