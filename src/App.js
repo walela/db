@@ -67,6 +67,9 @@ function App() {
 
   const loadMore = () => {
     setPageCount(pageCount + 1)
+  }
+
+  useEffect(() => {
     axios
       .get(
         `/users/${user}/repos?page=${pageCount}&per_page=9&sort=created&direction=asc`
@@ -75,7 +78,7 @@ function App() {
         setRepoData(res.data)
       })
       .catch(err => console.error(err))
-  }
+  }, [pageCount])
 
   useEffect(() => {
     console.log(axios.baseURL)
@@ -193,10 +196,16 @@ function App() {
           <Button
             variantColor='whatsapp'
             fontFamily='Stardos Stencil'
-            size='lg'
             onClick={loadMore}
           >
-            Load More →
+            Next →
+          </Button>
+          <Button
+            variantColor='whatsapp'
+            fontFamily='Stardos Stencil'
+            onClick={() => setPageCount(pageCount - 1)}
+          >
+            ← Previous
           </Button>
         </Stack>
       </SideBar>
