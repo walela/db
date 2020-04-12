@@ -51,7 +51,7 @@ const DashBoard = styled.div`
 `
 
 function App() {
-  const user = 'aholachek'
+  const user = 'walela'
   const [userData, setUserData] = useState([])
   const [repoData, setRepoData] = useState([])
   const [pageCount, setPageCount] = useState(1)
@@ -62,7 +62,7 @@ function App() {
 
   const getRepoData = () => {
     return axios.get(
-      `/users/${user}/repos?per_page=9&sort=created&direction=asc`
+      `/users/${user}/repos?per_page=4&sort=created&direction=asc`
     )
   }
 
@@ -73,7 +73,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `/users/${user}/repos?page=${pageCount}&per_page=9&sort=created&direction=asc`
+        `/users/${user}/repos?page=${pageCount}&per_page=4&sort=created&direction=asc`
       )
       .then(res => {
         setRepoData(res.data)
@@ -219,8 +219,8 @@ function App() {
             borderRadius='3px'
             borderTop='4px solid orange'
             backgroundColor='white'
-            w='21vw'
-            height='13vw'
+            w='34vw'
+            height='20vw'
             mt='12px'
             ml='6px'
             p={3}
