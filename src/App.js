@@ -17,8 +17,6 @@ const SideBar = styled.div`
   font-family: Libre Baskerville;
   height: 100vh;
   background-color: rgb(143, 33, 247);
-  margin-top: 12px;
-  margin-right: 12px;
   margin-left: 12px;
   border-radius: 2px;
   color: white;
@@ -28,7 +26,6 @@ const DashBoard = styled.div`
   width: 76vw;
   height: 100vh;
   background-color: rgb(236, 242, 236);
-  margin-top: 12px;
   margin-right: 12px;
   border-radius: 2px;
   display: flex;
