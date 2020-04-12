@@ -22,8 +22,6 @@ axios.defaults.baseURL = 'https://api.github.com'
 //   Authorization: `Bearer ${TOKEN}`,
 // }
 
-console.log(axios.defaults.headers)
-
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -52,7 +50,7 @@ const DashBoard = styled.div`
 `
 
 function App() {
-  const user = 'aholachek'
+  const user = 'walela'
   const [userData, setUserData] = useState([])
   const [repoData, setRepoData] = useState([])
 
@@ -206,8 +204,8 @@ function App() {
                 </Link>
               </Heading>
               <Stack isInline>
-                <Icon name='star' />
-                <Heading size='md' ml='-6px' mt='-3px'>
+                <Icon name='star' color='gold' />
+                <Heading size='md' ml='-4px' mt='-3px'>
                   {repo.stargazers_count}
                 </Heading>
               </Stack>
@@ -216,7 +214,7 @@ function App() {
 
             <Stack isInline mt='12px' justify='space-between'>
               <Badge variant='solid' variantColor='whatsapp'>
-                {repo.language}
+                {repo.language || 'NULL'}
               </Badge>
               <Stack isInline>
                 <Box as={GoRepoForked} size='18px'></Box>
