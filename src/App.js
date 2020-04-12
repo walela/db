@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Stack, Badge, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
+import { Stack, PseudoBox, Badge, Box, Icon, Heading, Image, Link } from '@chakra-ui/core'
 import { MdPeople, MdAccountCircle, MdLocationOn } from 'react-icons/md'
 import { FaUserEdit } from 'react-icons/fa'
 import styled from '@emotion/styled'
@@ -7,9 +7,11 @@ import axios from 'axios'
 
 const TOKEN = '766844db91680d70deea5f02d843c475ce48adeb'
 axios.defaults.baseURL = 'https://api.github.com'
-axios.defaults.headers.common = {
-  Authorization: `Bearer ${TOKEN}`,
-}
+// axios.defaults.headers.common = {
+//   Authorization: `Bearer ${TOKEN}`,
+// }
+
+console.log(axios.defaults.headers)
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -166,7 +168,7 @@ function App() {
       </SideBar>
       <DashBoard>
         {repoData.map(repo => (
-          <Box
+          <PseudoBox
             key={repo.id}
             borderRadius='4px'
             borderTop='3px solid orange'
@@ -177,6 +179,8 @@ function App() {
             ml='6px'
             p={3}
             mr='6px'
+            transition="all 0.2s ease-in"
+            _hover={{ transform: 'scale(1.05) translate(2px, -2px)' }}
           >
             <Stack isInline justify='space-between'>
               <Heading
@@ -201,7 +205,7 @@ function App() {
             <Badge variant='solid' variantColor='whatsapp' mt='12px'>
               {repo.language}
             </Badge>
-          </Box>
+          </PseudoBox>
         ))}
       </DashBoard>
     </AppContainer>
