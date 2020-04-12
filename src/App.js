@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import {
+  Button,
   Stack,
   PseudoBox,
   Badge,
   Box,
-  Flex,
   Icon,
   Heading,
   Image,
@@ -28,12 +28,12 @@ const AppContainer = styled.div`
   margin: 0 auto;
   display: flex;
 `
-
+// rgb(143, 33, 247)
 const SideBar = styled.div`
   width: 24vw;
   font-family: Libre Baskerville;
   height: 100vh;
-  background-color: rgb(143, 33, 247);
+  background-color: #184a45;
   border-radius: 2px;
   color: white;
 `
@@ -50,9 +50,10 @@ const DashBoard = styled.div`
 `
 
 function App() {
-  const user = 'walela'
+  const user = 'aholachek'
   const [userData, setUserData] = useState([])
   const [repoData, setRepoData] = useState([])
+  const [pageCount, setPageCount] = useState(1)
 
   const getUserData = () => {
     return axios.get(`/users/${user}`)
@@ -60,8 +61,20 @@ function App() {
 
   const getRepoData = () => {
     return axios.get(
-      `/users/${user}/repos?per_page=8&sort=created&direction=asc`
+      `/users/${user}/repos?per_page=9&sort=created&direction=asc`
     )
+  }
+
+  const loadMore = () => {
+    setPageCount(pageCount + 1)
+    axios
+      .get(
+        `/users/${user}/repos?page=${pageCount}&per_page=9&sort=created&direction=asc`
+      )
+      .then(res => {
+        setRepoData(res.data)
+      })
+      .catch(err => console.error(err))
   }
 
   useEffect(() => {
@@ -141,7 +154,9 @@ function App() {
                 fontFamily='Stardos Stencil'
                 fontWeight='bold'
               >
-                {userData.following}
+                <Link href={`https://github.com/${user}?tab=following`}>
+                  {userData.following}
+                </Link>
               </Heading>
             </Box>
             <Box w='10vw' height='14vh' mt='24px'>
@@ -161,7 +176,9 @@ function App() {
                 fontFamily='Stardos Stencil'
                 fontWeight='bold'
               >
-                {userData.followers}
+                <Link href={`https://github.com/${user}?tab=followers`}>
+                  {userData.followers}
+                </Link>
               </Heading>
             </Box>
           </Stack>
@@ -173,6 +190,14 @@ function App() {
               </Link>
             </Heading>
           </Stack>
+          <Button
+            variantColor='whatsapp'
+            fontFamily='Stardos Stencil'
+            size='lg'
+            onClick={loadMore}
+          >
+            Load More →
+          </Button>
         </Stack>
       </SideBar>
       <DashBoard>
@@ -213,7 +238,7 @@ function App() {
             <Box fontFamily='Stardos Stencil'>{repo.description}</Box>
 
             <Stack isInline mt='12px' justify='space-between'>
-              <Badge variant='solid' variantColor='whatsapp'>
+              <Badge variant='solid' variantColor='whatsapp' mb='6px'>
                 {repo.language || 'NULL'}
               </Badge>
               <Stack isInline>
