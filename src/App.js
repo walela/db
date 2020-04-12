@@ -195,7 +195,7 @@ function App() {
               </Stack>
             </Stack>
             <Box fontFamily='Stardos Stencil'>{repo.description}</Box>
-            <Badge variant='solid' variantColor='whatsapp' mt='18px'>
+            <Badge variant='solid' variantColor='whatsapp' mt='12px'>
               {repo.language}
             </Badge>
           </Box>
