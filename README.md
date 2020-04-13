@@ -2,7 +2,7 @@
 
 react thingie
 
-#TODO:
+# TODO:
 
 [] refactor into atomic components + state management
 [] search users initial page graphql toomey stuff
@@ -13,3 +13,4 @@ react thingie
 [] commits vizualisation
 [] tabbed navigation
 [] dashboard defaults
+[] more shit inside the cards?

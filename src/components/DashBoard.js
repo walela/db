@@ -15,8 +15,8 @@ const DashBoardContainer = styled.div`
   width: 76vw;
   height: 100vh;
   background-color: rgb(236, 242, 236);
-  margin-right: 12px;
   border-radius: 2px;
+  padding-top: 18px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -30,27 +30,18 @@ function DashBoard(props) {
       {repoData.map(repo => (
         <PseudoBox
           key={repo.id}
+          w='30vw'
+          h='30vh'
           borderRadius='3px'
           borderTop='4px solid orange'
           backgroundColor='white'
-          w='30vw'
-          height='30vh'
-          mt='12px'
-          ml='6px'
           p={3}
-          mr='6px'
-          transition='all 0.4s ease-in'
-          _hover={{ transform: 'scale(1.05) translate(2px, -2px)' }}
-        >
+          transition='all 0.5s ease-in'
+          _hover={{ transform: 'scale(1.04) translate(1px, -2px)' }}>
+          {/* heading and star count*/}
           <Stack isInline justify='space-between'>
-            <Heading
-              size='sm'
-              fontStyle='italic'
-              color='linkedin'
-              fontFamily='Stardos Stencil'
-            >
+            <Heading size='md' fontFamily='Stardos Stencil'>
               <Link href={`https://github.com/${repo.full_name}`}>
-                {' '}
                 {repo.name}
               </Link>
             </Heading>
@@ -61,8 +52,13 @@ function DashBoard(props) {
               </Heading>
             </Stack>
           </Stack>
-          <Box fontFamily='Stardos Stencil'>{repo.description}</Box>
 
+          {/* project description if present */}
+          <Box fontFamily='Stardos Stencil'>
+            {repo.description || 'Description unavailable'}
+          </Box>
+
+          {/* language stack and fork count */}
           <Stack isInline mt='12px' justify='space-between'>
             <Badge variant='solid' variantColor='whatsapp' mb='6px'>
               {repo.language || 'NULL'}
@@ -73,8 +69,7 @@ function DashBoard(props) {
                 size='md'
                 ml='-6px'
                 mt='-3px'
-                fontFamily='Stardos Stencil'
-              >
+                fontFamily='Stardos Stencil'>
                 {repo.forks_count}
               </Heading>
             </Stack>
