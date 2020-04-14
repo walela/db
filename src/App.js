@@ -31,7 +31,6 @@ function App() {
       `/users/${user}/repos?per_page=6&sort=created&direction=asc`
     )
   }
-
   useEffect(() => {
     axios
       .get(
@@ -63,7 +62,7 @@ function App() {
         pageCount={pageCount}
         setPageCount={setPageCount}
       />
-      <DashBoard repoData={repoData} />
+      <DashBoard user={user} repoData={repoData} />
     </AppContainer>
   )
 }

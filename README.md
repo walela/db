@@ -14,3 +14,6 @@ react thingie
 [] tabbed navigation
 [] dashboard defaults
 [] more shit inside the cards?
+[] transition animations
+[] https://material-ui.com/store/ for sample dashboards
+[] architect app with complex state and events
