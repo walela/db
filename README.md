@@ -1,4 +1,4 @@
-## GitHub DashBoard
+## GitHub Dashboard
 
 react thingie
 
