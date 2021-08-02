@@ -24,13 +24,18 @@ const DashBoardContainer = styled.div`
 `
 
 function DashBoard(props) {
-  axios.defaults.baseURL =
-    'https://api.github.com'
+  axios.defaults.baseURL = 'https://api.github.com'
+  const axiosOptions = {
+    headers: {
+      'User-Agent': 'Axios 0.19.2',
+      Authorization: 'token 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',
+    },
+  }
   const { user, repoData } = props
   const [languages, setLanguages] = useState(null)
 
   const getLanguages = repo => {
-    return axios.get(`/repos/${user}/${repo}/languages`)
+    return axios.get(`/repos/${user}/${repo}/languages`, axiosOptions)
   }
 
   return (

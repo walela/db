@@ -33,15 +33,13 @@ function SideBar(props) {
           size='md'
           fontFamily='Playfair Display'
           fontWeight='bold'
-          textAlign='center'
-        >
+          textAlign='center'>
           {userData.name}
         </Heading>
         <Link
           fontSize='18px'
           textDecoration='underline'
-          href={`https://github.com/${userData.login}`}
-        >
+          href={`https://github.com/${userData.login}`}>
           {userData.login}
         </Link>
         <Stack isInline spacing={3} justify='center'>
@@ -69,8 +67,7 @@ function SideBar(props) {
               color='lightgrey'
               textAlign='center'
               fontFamily='Libre Baskerville'
-              fontWeight='bold'
-            >
+              fontWeight='bold'>
               Following
             </Heading>
             <Heading
@@ -78,8 +75,7 @@ function SideBar(props) {
               mt='12px'
               textAlign='center'
               fontFamily='Stardos Stencil'
-              fontWeight='bold'
-            >
+              fontWeight='bold'>
               <Link href={`https://github.com/${user}?tab=following`}>
                 {userData.following}
               </Link>
@@ -91,8 +87,7 @@ function SideBar(props) {
               color='lightgrey'
               textAlign='center'
               fontFamily='Libre Baskerville'
-              fontWeight='bold'
-            >
+              fontWeight='bold'>
               Followers
             </Heading>
             <Heading
@@ -100,8 +95,7 @@ function SideBar(props) {
               mt='12px'
               textAlign='center'
               fontFamily='Stardos Stencil'
-              fontWeight='bold'
-            >
+              fontWeight='bold'>
               <Link href={`https://github.com/${user}?tab=followers`}>
                 {userData.followers}
               </Link>
@@ -120,15 +114,13 @@ function SideBar(props) {
           <Button
             variantColor='whatsapp'
             fontFamily='Stardos Stencil'
-            onClick={() => setPageCount(pageCount - 1)}
-          >
+            onClick={() => setPageCount(pageCount - 1)}>
             ← Previous
           </Button>
           <Button
             variantColor='whatsapp'
             fontFamily='Stardos Stencil'
-            onClick={() => setPageCount(pageCount + 1)}
-          >
+            onClick={() => setPageCount(pageCount + 1)}>
             Next →
           </Button>
         </Stack>
