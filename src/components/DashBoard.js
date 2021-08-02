@@ -25,7 +25,7 @@ const DashBoardContainer = styled.div`
 
 function DashBoard(props) {
   axios.defaults.baseURL =
-    'https://cors-anywhere.herokuapp.com/https://api.github.com'
+    'https://api.github.com'
   const { user, repoData } = props
   const [languages, setLanguages] = useState(null)
 

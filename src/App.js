@@ -6,8 +6,7 @@ import axios from 'axios'
 import SideBar from './components/Sidebar'
 import DashBoard from './components/DashBoard'
 
-axios.defaults.baseURL =
-  'https://cors-anywhere.herokuapp.com/https://api.github.com'
+axios.defaults.baseURL = 'https://api.github.com'
 
 const AppContainer = styled.div`
   width: 100vw;
